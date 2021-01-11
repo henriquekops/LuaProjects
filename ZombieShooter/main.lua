@@ -1,4 +1,8 @@
 function love.load()
+    local iconData = love.image.newImageData("sprites/icon.png")
+    love.window.setIcon(iconData)
+    love.window.setTitle("ZombieShooter")
+
     math.randomseed(os.time())
 
     sprites = {}
@@ -7,7 +11,7 @@ function love.load()
     sprites.zombie = love.graphics.newImage("sprites/zombie.png")
     sprites.background = love.graphics.newImage("sprites/background.png")
     sprites.crosshairs = love.graphics.newImage("sprites/crosshairs.png")
-
+    
     player = {}
     player.x = love.graphics.getWidth()/2
     player.y = love.graphics.getHeight()/2
