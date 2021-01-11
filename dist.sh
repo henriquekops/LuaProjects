@@ -2,6 +2,7 @@
 
 if [ -z $1 ]; then
     echo "Usage: ./dist <project_dir_name>"
+    exit
 fi
 
 TARGET="$1"-dist
