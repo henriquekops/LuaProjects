@@ -19,5 +19,4 @@ cd ..
 
 cat win/bin/love.exe $TARGET/"$1".love > $TARGET/"$1".exe
 cp win/* $TARGET
-cp "$1"/game.ico $TARGET
 rm -f $TARGET/$PACKED
