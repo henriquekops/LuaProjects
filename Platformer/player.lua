@@ -1,4 +1,7 @@
-player = world:newRectangleCollider(360, 100, 40, 100, {collision_class="Player"})
+playerStartX = 360
+playerStartY = 100
+
+player = world:newRectangleCollider(playerStartX, playerStartY, 40, 100, {collision_class="Player"})
 player:setFixedRotation(true)
 player.speed = 240
 player.animation = animations.idle
@@ -7,28 +10,28 @@ player.direction = 1
 player.isGrounded = true
 
 function playerUpdate(dt)
-    if player.body then
-        player.isGrounded = checkForPayerColliders()
-        player.isMoving = false
 
-        local px, _ = player:getPosition()
+    player.isGrounded = checkForPayerColliders()
+    player.isMoving = false
 
-        if love.keyboard.isDown("right") then
-            player:setX(px + player.speed * dt)
-            player.isMoving = true
-            player.direction = 1
-        end
+    local px, _ = player:getPosition()
 
-        if love.keyboard.isDown("left") then
-            player:setX(px - player.speed * dt)
-            player.isMoving = true
-            player.direction = -1
-        end
-
-        if player:enter("Danger") then
-            player:destroy()
-        end
+    if love.keyboard.isDown("right") then
+        player:setX(px + player.speed * dt)
+        player.isMoving = true
+        player.direction = 1
     end
+
+    if love.keyboard.isDown("left") then
+        player:setX(px - player.speed * dt)
+        player.isMoving = true
+        player.direction = -1
+    end
+
+    if player:enter("Danger") then
+        player:setPosition(playerStartX, playerStartY)
+    end
+
     player.animation = setPlayerAnimation()
     player.animation:update(dt)
 end
